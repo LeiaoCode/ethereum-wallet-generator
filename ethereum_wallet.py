@@ -18,6 +18,12 @@ class HelpWindow(QDialog):
 
         # 设置窗口标题
         self.setWindowTitle('帮助说明')
+        # 获取当前脚本所在目录
+        base_path = os.path.dirname(os.path.abspath(__file__))
+
+        # 构建图标文件的绝对路径
+        icon_path = os.path.join(base_path, 'help.ico')
+        self.setWindowIcon(QIcon(icon_path))  # 这里传入你的图标文件路径
 
         # 创建布局
         layout = QVBoxLayout()
@@ -65,11 +71,11 @@ class HelpWindow(QDialog):
             本软件承诺没有任何后门，所有生成的私钥和钱包地址仅保存在本地，不会上传到任何服务器或第三方服务。我们绝不会收集您的个人信息或任何加密数据。<br><br>
 
             <b>🔓 开源声明</b><br>
-            本软件的源代码完全开源，您可以在GitHub上查看和修改代码。我们鼓励您在使用软件时参与贡献，任何修改后的版本都应遵循开源协议。我们坚信开源是保障软件透明度和安全性的关键，用户可以通过查看源代码验证我们的承诺。<br><br>
+            本软件的源代码完全开源，您可以在GitHub上查看和修改代码。我们鼓励您在使用软件时参与贡献，任何修改后的版本都应遵循开源协议。我们坚信开源是保障<br>软件透明度和安全性的关键，用户可以通过查看源代码验证我们的承诺。<br><br>
 
             <b>💻 源代码地址</b><br>
             请访问我们的GitHub页面，查看源代码并参与开发和改进：<br>
-            - GitHub: <a href="https://github.com/OxStackCoder/ethereum-wallet-generator" target="_blank">Ethereum钱包生成器 - GitHub</a><br><br>
+            - GitHub: <a href="https://github.com/LeiaoCode/ethereum-wallet-generator" target="_blank" id="GitHub-link">Ethereum钱包生成器 - GitHub</a><br><br>
             """,
             self
         )
@@ -91,7 +97,9 @@ class HelpWindow(QDialog):
         if "twitter.com" in link:
             # 打开Twitter链接
             QDesktopServices.openUrl(QUrl(link))
-            self.show_message("成功复制推特链接到剪贴板！")
+        if "github.com" in link:
+            # 打开Twitter链接
+            QDesktopServices.openUrl(QUrl(link))
         elif "weixin://" in link:
             # 打开微信链接
             QDesktopServices.openUrl(QUrl(link))
